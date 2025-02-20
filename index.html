@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Jornada 1 - Segona Federació Grup 3 2024-2025</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+      }
+      .container {
+        display: flex;
+        gap: 30px;
+      }
+      .table-container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #333;
+        color: #fff;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      input[type="text"] {
+        width: 40px;
+        padding: 5px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+      .classification {
+        width: 300px;
+      }
+      select {
+        width: 60px;
+        padding: 5px;
+        border: 2px solid #333;
+        border-radius: 5px;
+        background-color: white;
+        font-size: 16px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      /* Canvi de color en passar el cursor per sobre */
+      select:hover {
+        border-color: #555;
+      }
+
+      /* Canvi d'estil quan es fa clic */
+      select:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Taula de partits -->
+      <div class="table-container">
+        <h1>Segona Federació Grup 3</h1>
+        <h2 style="text-align: center">Jornada 24</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Local</th>
+              <th>Visitant</th>
+              <th>Resultat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>RCD Mallorca "B"</td>
+              <td>CE Andratx</td>
+              <td>
+                <select id="resultat-mallorca-andratx">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Elche CF "B"</td>
+              <td>CD Ibiza Islas Pitiusas</td>
+              <td>
+                <select id="resultat-elche-ibiza">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>SCR Peña Deportiva</td>
+              <td>Torrent CF</td>
+              <td>
+                <select id="resultat-peña-torrent">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Terrassa FC</td>
+              <td>Valencia-Mestalla</td>
+              <td>
+                <select id="resultat-terrassa-valencia">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>CF Badalona Futur</td>
+              <td>CD Atlético Baleares</td>
+              <td>
+                <select id="resultat-badalona-baleares">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>CE Europa</td>
+              <td>RCD Espanyol "B"</td>
+              <td>
+                <select id="resultat-europa-espanyol">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>UE Olot</td>
+              <td>UE Cornellà</td>
+              <td>
+                <select id="resultat-olot-cornella">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>UD Alzira</td>
+              <td>Club Lleida Esportiu</td>
+              <td>
+                <select id="resultat-alzira-lleida">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>CE Sabadell FC</td>
+              <td>UE Sant Andreu</td>
+              <td>
+                <select id="resultat-sabadell-uesa">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 style="text-align: center">Jornada 25</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Local</th>
+              <th>Visitant</th>
+              <th>Resultat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CE Andratx</td>
+              <td>CE Europa</td>
+              <td>
+                <select id="resultat-europa-mallorca">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Valencia-Mestalla</td>
+              <td>CF Badalona Futur</td>
+              <td>
+                <select id="resultat-valencia-badalona">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>RCD Espanyol "B"</td>
+              <td>SCR Peña Deportiva</td>
+              <td>
+                <select id="resultat-español-peña">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>CD Atlético Baleares</td>
+              <td>CE Sabadell FC</td>
+              <td>
+                <select id="resultat-baleares-sabadell">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>CD Ibiza Islas Pitiusas</td>
+              <td>RCD Mallorca "B"</td>
+              <td>
+                <select id="resultat-ibiza-mallorca">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Torrent CF</td>
+              <td>Terrassa FC</td>
+              <td>
+                <select id="resultat-torrent-terrassa">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>UE Cornellà</td>
+              <td>UD Alzira</td>
+              <td>
+                <select id="resultat-cornella-alzira">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Club Lleida Esportiu</td>
+              <td>Elche CF "B"</td>
+              <td>
+                <select id="resultat-lleida-elche">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>UE Sant Andreu</td>
+              <td>UE Olot</td>
+              <td>
+                <select id="resultat-uesa-olot">
+                  <option value="">—</option>
+                  <option value="1">1</option>
+                  <option value="X">X</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Taula de classificació -->
+      <div class="table-container classification">
+        <h1>Punts Totals</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Posició</th>
+              <th>Equip</th>
+              <th>Punts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td id="europa">CE Europa</td>
+              <td id="punts-europa">41</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td id="uesa">UE Sant Andreu</td>
+              <td id="punts-uesa">40</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td id="espanyol">RCD Espanyol "B"</td>
+              <td id="punts-espanyol">40</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td id="terrassa">Terrassa FC</td>
+              <td id="punts-terrassa">38</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td id="torrent">Torrent CF</td>
+              <td id="punts-torrent">37</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td id="valencia">Valencia-Mestalla</td>
+              <td id="punts-valencia">36</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td id="sabadell">CE Sabadell FC</td>
+              <td id="punts-sabadell">35</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td id="elche">Elche CF "B"</td>
+              <td id="punts-elche">35</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td id="baleares">CD Atlético Baleares</td>
+              <td id="punts-baleares">35</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td id="lleida">Club Lleida Esportiu</td>
+              <td id="punts-lleida">34</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td id="alzira">UD Alzira</td>
+              <td id="punts-alzira">29</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td id="olot">UE Olot</td>
+              <td id="punts-olot">27</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td id="ibiza">CD Ibiza Islas Pitiusas</td>
+              <td id="punts-ibiza">27</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td id="peña">SCR Peña Deportiva</td>
+              <td id="punts-peña">26</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td id="cornella">UE Cornellà</td>
+              <td id="punts-cornellà">24</td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td id="andratx">CE Andratx</td>
+              <td id="punts-andratx">21</td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td id="badalona">CF Badalona Futur</td>
+              <td id="punts-badalona">16</td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td id="mallorca">RCD Mallorca "B"</td>
+              <td id="punts-mallorca">11</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const selects = document.querySelectorAll("select");
+
+        const puntsInicials = {
+          europa: 41,
+          uesa: 40,
+          espanyol: 40,
+          terrassa: 38,
+          torrent: 37,
+          valencia: 36,
+          sabadell: 35,
+          elche: 35,
+          baleares: 34,
+          lleida: 34,
+          alzira: 29,
+          olot: 27,
+          ibiza: 27,
+          peña: 26,
+          cornella: 24,
+          andratx: 21,
+          badalona: 16,
+          mallorca: 11,
+        };
+
+        const equipToId = {
+          "CE Europa": "europa",
+          "UE Sant Andreu": "uesa",
+          'RCD Espanyol "B"': "espanyol",
+          "Terrassa FC": "terrassa",
+          "Torrent CF": "torrent",
+          "Valencia-Mestalla": "valencia",
+          "CE Sabadell FC": "sabadell",
+          'Elche CF "B"': "elche",
+          "CD Atlético Baleares": "baleares",
+          "Club Lleida Esportiu": "lleida",
+          "UD Alzira": "alzira",
+          "UE Olot": "olot",
+          "CD Ibiza Islas Pitiusas": "ibiza",
+          "SCR Peña Deportiva": "peña",
+          "UE Cornellà": "cornella",
+          "CE Andratx": "andratx",
+          "CF Badalona Futur": "badalona",
+          'RCD Mallorca "B"': "mallorca",
+        };
+
+        function actualitzaClassificacio() {
+          const punts = { ...puntsInicials };
+
+          selects.forEach((select) => {
+            const resultat = select.value;
+            if (!resultat) return;
+
+            const fila = select.closest("tr");
+            const local = fila.children[0].textContent.trim();
+            const visitant = fila.children[1].textContent.trim();
+
+            const idLocal = equipToId[local];
+            const idVisitant = equipToId[visitant];
+
+            if (idLocal && idVisitant) {
+              if (resultat === "1") {
+                punts[idLocal] += 3;
+              } else if (resultat === "2") {
+                punts[idVisitant] += 3;
+              } else if (resultat === "X") {
+                punts[idLocal] += 1;
+                punts[idVisitant] += 1;
+              }
+            }
+          });
+
+          let classificacio = Object.keys(punts)
+            .map((id) => ({
+              id,
+              nom: Object.keys(equipToId).find((key) => equipToId[key] === id),
+              punts: punts[id],
+            }))
+            .sort((a, b) => b.punts - a.punts);
+
+          const tbody = document.querySelector(".classification tbody");
+          tbody.innerHTML = "";
+
+          classificacio.forEach((equip, index) => {
+            let fila = document.createElement("tr");
+            let posicio = document.createElement("td");
+            let nomEquip = document.createElement("td");
+            let puntsEquip = document.createElement("td");
+
+            posicio.textContent = index + 1;
+            nomEquip.textContent = equip.nom;
+            puntsEquip.textContent = equip.punts;
+            puntsEquip.id = `punts-${equip.id}`;
+
+            fila.appendChild(posicio);
+            fila.appendChild(nomEquip);
+            fila.appendChild(puntsEquip);
+
+            // Assignació de colors segons la posició
+            if (index === 0) {
+              fila.style.backgroundColor = "#28a745"; // Verd fort per al 1r lloc
+              fila.style.color = "#fff";
+            } else if (index >= 1 && index <= 4) {
+              fila.style.backgroundColor = "#90ee90"; // Verd clar per al 2n-5è lloc
+            } else if (index === 12) {
+              fila.style.backgroundColor = "#ff9999"; // Vermell suau per al 13è lloc
+            } else if (index >= 13 && index <= 17) {
+              fila.style.backgroundColor = "#dc3545"; // Vermell fort per al 14è-18è lloc
+              fila.style.color = "#fff";
+            }
+
+            tbody.appendChild(fila);
+          });
+        }
+
+        selects.forEach((select) => {
+          select.addEventListener("change", actualitzaClassificacio);
+        });
+
+        // Executa la funció quan es carrega la pàgina per aplicar els colors inicialment
+        actualitzaClassificacio();
+      });
+    </script>
+  </body>
+</html>
