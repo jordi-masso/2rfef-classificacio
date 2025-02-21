@@ -76,6 +76,36 @@
         border-color: #007bff;
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
       }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+      }
+
+      #boto-anterior {
+        background-color: #007bff;
+        color: white;
+        margin-right: 10px;
+      }
+
+      #boto-seguent {
+        background-color: #28a745;
+        color: white;
+      }
+
+      button:hover {
+        filter: brightness(85%);
+        transform: scale(1.05);
+      }
+
+      button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+        transform: scale(1);
+      }
     </style>
   </head>
   <body>
@@ -83,260 +113,1429 @@
       <!-- Taula de partits -->
       <div class="table-container">
         <h1>Segona Federació Grup 3</h1>
-        <h2 style="text-align: center">Jornada 24</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Local</th>
-              <th>Visitant</th>
-              <th>Resultat</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>RCD Mallorca "B"</td>
-              <td>CE Andratx</td>
-              <td>
-                <select id="resultat-mallorca-andratx">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Elche CF "B"</td>
-              <td>CD Ibiza Islas Pitiusas</td>
-              <td>
-                <select id="resultat-elche-ibiza">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+        <h2 style="text-align: center">
+          Jornada <span id="num-jornada">24</span>
+        </h2>
+        <div class="jornada" id="jornada-24">
+          <table>
+            <thead>
+              <tr>
+                <th>Local</th>
+                <th>Visitant</th>
+                <th>Resultat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>RCD Mallorca "B"</td>
+                <td>CE Andratx</td>
+                <td>
+                  <select id="resultat-mallorca-andratx">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Elche CF "B"</td>
+                <td>CD Ibiza Islas Pitiusas</td>
+                <td>
+                  <select id="resultat-elche-ibiza">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>SCR Peña Deportiva</td>
-              <td>Torrent CF</td>
-              <td>
-                <select id="resultat-peña-torrent">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>SCR Peña Deportiva</td>
+                <td>Torrent CF</td>
+                <td>
+                  <select id="resultat-peña-torrent">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>Terrassa FC</td>
-              <td>Valencia-Mestalla</td>
-              <td>
-                <select id="resultat-terrassa-valencia">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>Terrassa FC</td>
+                <td>Valencia-Mestalla</td>
+                <td>
+                  <select id="resultat-terrassa-valencia">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>CF Badalona Futur</td>
-              <td>CD Atlético Baleares</td>
-              <td>
-                <select id="resultat-badalona-baleares">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>CF Badalona Futur</td>
+                <td>CD Atlético Baleares</td>
+                <td>
+                  <select id="resultat-badalona-baleares">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>CE Europa</td>
-              <td>RCD Espanyol "B"</td>
-              <td>
-                <select id="resultat-europa-espanyol">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>CE Europa</td>
+                <td>RCD Espanyol "B"</td>
+                <td>
+                  <select id="resultat-europa-espanyol">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>UE Olot</td>
-              <td>UE Cornellà</td>
-              <td>
-                <select id="resultat-olot-cornella">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>UE Olot</td>
+                <td>UE Cornellà</td>
+                <td>
+                  <select id="resultat-olot-cornella">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>UD Alzira</td>
-              <td>Club Lleida Esportiu</td>
-              <td>
-                <select id="resultat-alzira-lleida">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>UD Alzira</td>
+                <td>Club Lleida Esportiu</td>
+                <td>
+                  <select id="resultat-alzira-lleida">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>CE Sabadell FC</td>
-              <td>UE Sant Andreu</td>
-              <td>
-                <select id="resultat-sabadell-uesa">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <h2 style="text-align: center">Jornada 25</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Local</th>
-              <th>Visitant</th>
-              <th>Resultat</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>CE Andratx</td>
-              <td>CE Europa</td>
-              <td>
-                <select id="resultat-europa-mallorca">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Valencia-Mestalla</td>
-              <td>CF Badalona Futur</td>
-              <td>
-                <select id="resultat-valencia-badalona">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>CE Sabadell FC</td>
+                <td>UE Sant Andreu</td>
+                <td>
+                  <select id="resultat-sabadell-uesa">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-            <tr>
-              <td>RCD Espanyol "B"</td>
-              <td>SCR Peña Deportiva</td>
-              <td>
-                <select id="resultat-español-peña">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+        <div class="jornada" id="jornada-25" style="display: none">
+          <table>
+            <thead>
+              <tr>
+                <th>Local</th>
+                <th>Visitant</th>
+                <th>Resultat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CE Andratx</td>
+                <td>CE Europa</td>
+                <td>
+                  <select id="resultat-andratx-europa">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Valencia-Mestalla</td>
+                <td>CF Badalona Futur</td>
+                <td>
+                  <select id="resultat-valencia-badalona">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>CD Atlético Baleares</td>
-              <td>CE Sabadell FC</td>
-              <td>
-                <select id="resultat-baleares-sabadell">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>RCD Espanyol "B"</td>
+                <td>SCR Peña Deportiva</td>
+                <td>
+                  <select id="resultat-espanyol-peña">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>CD Ibiza Islas Pitiusas</td>
-              <td>RCD Mallorca "B"</td>
-              <td>
-                <select id="resultat-ibiza-mallorca">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>CD Atlético Baleares</td>
+                <td>CE Sabadell FC</td>
+                <td>
+                  <select id="resultat-baleares-sabadell">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>Torrent CF</td>
-              <td>Terrassa FC</td>
-              <td>
-                <select id="resultat-torrent-terrassa">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>CD Ibiza Islas Pitiusas</td>
+                <td>RCD Mallorca "B"</td>
+                <td>
+                  <select id="resultat-ibiza-mallorca">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>UE Cornellà</td>
-              <td>UD Alzira</td>
-              <td>
-                <select id="resultat-cornella-alzira">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>Torrent CF</td>
+                <td>Terrassa FC</td>
+                <td>
+                  <select id="resultat-torrent-terrassa">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>Club Lleida Esportiu</td>
-              <td>Elche CF "B"</td>
-              <td>
-                <select id="resultat-lleida-elche">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>UE Cornellà</td>
+                <td>UD Alzira</td>
+                <td>
+                  <select id="resultat-cornella-alzira">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>UE Sant Andreu</td>
-              <td>UE Olot</td>
-              <td>
-                <select id="resultat-uesa-olot">
-                  <option value="">—</option>
-                  <option value="1">1</option>
-                  <option value="X">X</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              <tr>
+                <td>Club Lleida Esportiu</td>
+                <td>Elche CF "B"</td>
+                <td>
+                  <select id="resultat-lleida-elche">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
+
+              <tr>
+                <td>UE Sant Andreu</td>
+                <td>UE Olot</td>
+                <td>
+                  <select id="resultat-uesa-olot">
+                    <option value="">—</option>
+                    <option value="1">1</option>
+                    <option value="X">X</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="jornada" id="jornada-26" style="display: none">
+            <table>
+              <thead>
+                <tr>
+                  <th>Local</th>
+                  <th>Visitant</th>
+                  <th>Resultat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Valencia-Mestalla</td>
+                  <td>CD Atlético Baleares</td>
+                  <td>
+                    <select id="resultat-valencia-baleares">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>UD Alzira</td>
+                  <td>UE Sant Andreu</td>
+                  <td>
+                    <select id="resultat-alzira-uesa">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Elche CF "B"</td>
+                  <td>UE Cornellà</td>
+                  <td>
+                    <select id="resultat-elche-cornella">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>RCD Mallorca "B"</td>
+                  <td>Club Lleida Esportiu</td>
+                  <td>
+                    <select id="resultat-mallorca-lleida">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CE Europa</td>
+                  <td>CD Ibiza Islas Pitiusas</td>
+                  <td>
+                    <select id="resultat-europa-ibiza">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>SCR Peña Deportiva</td>
+                  <td>CE Andratx</td>
+                  <td>
+                    <select id="resultat-peña-andratx">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Terrassa FC</td>
+                  <td>RCD Espanyol "B"</td>
+                  <td>
+                    <select id="resultat-terrassa-espanyol">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CF Badalona Futur</td>
+                  <td>Torrent CF</td>
+                  <td>
+                    <select id="resultat-lleida-elche">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>UE Olot</td>
+                  <td>CE Sabadell FC	</td>
+                  <td>
+                    <select id="resultat-olot-sabadell">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="jornada" id="jornada-27" style="display: none">
+            <table>
+              <thead>
+                <tr>
+                  <th>Local</th>
+                  <th>Visitant</th>
+                  <th>Resultat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>UE Cornellà</td>
+                  <td>RCD Mallorca "B"</td>
+                  <td>
+                    <select id="resultat-cornella-mallorca">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Club Lleida Esportiu</td>
+                  <td>CE Europa	</td>
+                  <td>
+                    <select id="resultat-lleida-europa">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>RCD Espanyol "B"</td>
+                  <td>CF Badalona Futur	</td>
+                  <td>
+                    <select id="resultat-espanyol-badalona">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CD Atlético Baleares</td>
+                  <td>UE Olot</td>
+                  <td>
+                    <select id="resultat-baleares-olot">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CD Ibiza Islas Pitiusas</td>
+                  <td>SCR Peña Deportiva</td>
+                  <td>
+                    <select id="resultat-ibiza-peña">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CE Andratx</td>
+                  <td>Terrassa FC</td>
+                  <td>
+                    <select id="resultat-andratx-terrassa">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Torrent CF</td>
+                  <td>Valencia-Mestalla</td>
+                  <td>
+                    <select id="resultat-torrent-valencia">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CE Sabadell FC</td>
+                  <td>UD Alzira</td>
+                  <td>
+                    <select id="resultat-sabadell-alzira">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>UE Sant Andreu</td>
+                  <td>Elche CF "B"</td>
+                  <td>
+                    <select id="resultat-uesa-elche">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="jornada" id="jornada-28" style="display: none">
+            <table>
+              <thead>
+                <tr>
+                  <th>Local</th>
+                  <th>Visitant</th>
+                  <th>Resultat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>UD Alzira</td>
+                  <td>UE Olot</td>
+                  <td>
+                    <select id="resultat-alzira-olot">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Elche CF "B"</td>
+                  <td>CE Sabadell FC</td>
+                  <td>
+                    <select id="resultat-elche-sabadell">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>RCD Mallorca "B"</td>
+                  <td>UE Sant Andreu</td>
+                  <td>
+                    <select id="resultat-mallorca-uesa">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CE Europa</td>
+                  <td>UE Cornellà</td>
+                  <td>
+                    <select id="resultat-europa-cornella">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CF Badalona Futur</td>
+                  <td>CE Andratx</td>
+                  <td>
+                    <select id="resultat-badalona-andratx">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Valencia-Mestalla</td>
+                  <td>RCD Espanyol "B"</td>
+                  <td>
+                    <select id="resultat-valencia-espanyol">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>SCR Peña Deportiva</td>
+                  <td>Club Lleida Esportiu</td>
+                  <td>
+                    <select id="resultat-peña-lleida">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Terrassa FC</td>
+                  <td>CD Ibiza Islas Pitiusas</td>
+                  <td>
+                    <select id="resultat-terrassa-ibiza">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Torrent CF</td>
+                  <td>CD Atlético Baleares</td>
+                  <td>
+                    <select id="resultat-uesa-olot">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="jornada" id="jornada-29" style="display: none">
+            <table>
+              <thead>
+                <tr>
+                  <th>Local</th>
+                  <th>Visitant</th>
+                  <th>Resultat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>UE Olot</td>
+                  <td>Elche CF "B"</td>
+                  <td>
+                    <select id="resultat-olot-elche">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>CE Sabadell FC</td>
+                  <td>RCD Mallorca "B"</td>
+                  <td>
+                    <select id="resultat-sabadell-mallorca">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>UE Cornellà</td>
+                  <td>SCR Peña Deportiva</td>
+                  <td>
+                    <select id="resultat-cornella-peña">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Club Lleida Esportiu</td>
+                  <td>Terrassa FC</td>
+                  <td>
+                    <select id="resultat-baleares-sabadell">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>RCD Espanyol "B"</td>
+                  <td>Torrent CF</td>
+                  <td>
+                    <select id="resultat-espanyol-torrent">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CD Atlético Baleares</td>
+                  <td>UD Alzira</td>
+                  <td>
+                    <select id="resultat-baleares-alzira">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CD Ibiza Islas Pitiusas</td>
+                  <td>CF Badalona Futur</td>
+                  <td>
+                    <select id="resultat-ibiza-badalona">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CE Andratx</td>
+                  <td>Valencia-Mestalla</td>
+                  <td>
+                    <select id="resultat-andratx-valencia">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>UE Sant Andreu</td>
+                  <td>CE Europa</td>
+                  <td>
+                    <select id="resultat-uesa-europa">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="jornada" id="jornada-30" style="display: none">
+            <table>
+              <thead>
+                <tr>
+                  <th>Local</th>
+                  <th>Visitant</th>
+                  <th>Resultat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Elche CF "B"</td>
+                  <td>UD Alzira</td>
+                  <td>
+                    <select id="resultat-elche-alzira">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>CE Europa</td>
+                  <td>CE Sabadell FC</td>
+                  <td>
+                    <select id="resultat-europa-sabadell">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CF Badalona Futur</td>
+                  <td>Club Lleida Esportiu</td>
+                  <td>
+                    <select id="resultat-badalona-lleida">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Valencia-Mestalla</td>
+                  <td>CD Ibiza Islas Pitiusas</td>
+                  <td>
+                    <select id="resultat-valencia-ibiza">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>RCD Espanyol "B"</td>
+                  <td>CD Atlético Baleares</td>
+                  <td>
+                    <select id="resultat-espanyol-baleares">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>RCD Mallorca "B"</td>
+                  <td>UE Olot</td>
+                  <td>
+                    <select id="resultat-mallorca-olot">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>SCR Peña Deportiva</td>
+                  <td>UE Sant Andreu</td>
+                  <td>
+                    <select id="resultat-peña-uesa">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Terrassa FC</td>
+                  <td>UE Cornellà</td>
+                  <td>
+                    <select id="resultat-terrassa-cornella">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Torrent CF</td>
+                  <td>CE Andratx</td>
+                  <td>
+                    <select id="resultat-torrent-andratx">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="jornada" id="jornada-31" style="display: none">
+            <table>
+              <thead>
+                <tr>
+                  <th>Local</th>
+                  <th>Visitant</th>
+                  <th>Resultat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>UE Olot</td>
+                  <td>CE Europa</td>
+                  <td>
+                    <select id="resultat-olot-europa">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>UE Cornellà</td>
+                  <td>CF Badalona Futur</td>
+                  <td>
+                    <select id="resultat-cornella-badalona">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CE Sabadell FC</td>
+                  <td>SCR Peña Deportiva</td>
+                  <td>
+                    <select id="resultat-sabadell-peña">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Club Lleida Esportiu</td>
+                  <td>Valencia-Mestalla</td>
+                  <td>
+                    <select id="resultat-lleida-valencia">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CE Andratx</td>
+                  <td>RCD Espanyol "B"</td>
+                  <td>
+                    <select id="resultat-andratx-espanyol">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CD Atlético Baleares</td>
+                  <td>Elche CF "B"</td>
+                  <td>
+                    <select id="resultat-baleares-elche">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CD Ibiza Islas Pitiusas</td>
+                  <td>Torrent CF</td>
+                  <td>
+                    <select id="resultat-ibiza-torrent">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>UE Sant Andreu</td>
+                  <td>Terrassa FC</td>
+                  <td>
+                    <select id="resultat-uesa-terrassa">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>UD Alzira</td>
+                  <td>RCD Mallorca "B"</td>
+                  <td>
+                    <select id="resultat-alzira-mallorca">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="jornada" id="jornada-32" style="display: none">
+            <table>
+              <thead>
+                <tr>
+                  <th>Local</th>
+                  <th>Visitant</th>
+                  <th>Resultat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>RCD Mallorca "B"</td>
+                  <td>Elche CF "B"</td>
+                  <td>
+                    <select id="resultat-mallorca-elche">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>CE Europa</td>
+                  <td>UD Alzira</td>
+                  <td>
+                    <select id="resultat-europa-alzira">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CF Badalona Futur</td>
+                  <td>UE Sant Andreu</td>
+                  <td>
+                    <select id="resultat-badalona-uesa">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Valencia-Mestalla</td>
+                  <td>UE Cornellà</td>
+                  <td>
+                    <select id="resultat-valencia-cornella">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>RCD Espanyol "B"</td>
+                  <td>CD Ibiza Islas Pitiusas</td>
+                  <td>
+                    <select id="resultat-espanyol-ibiza">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CE Andratx</td>
+                  <td>CD Atlético Baleares</td>
+                  <td>
+                    <select id="resultat-andratx-baleares">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>SCR Peña Deportiva</td>
+                  <td>UE Olot</td>
+                  <td>
+                    <select id="resultat-peña-olot">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Torrent CF</td>
+                  <td>Club Lleida Esportiu</td>
+                  <td>
+                    <select id="resultat-torrent-lleida">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Terrassa FC</td>
+                  <td>CE Sabadell FC</td>
+                  <td>
+                    <select id="resultat-terrassa-sabadell">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="jornada" id="jornada-33" style="display: none">
+            <table>
+              <thead>
+                <tr>
+                  <th>Local</th>
+                  <th>Visitant</th>
+                  <th>Resultat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>RCD Mallorca "B"</td>
+                  <td>CD Atlético Baleares</td>
+                  <td>
+                    <select id="resultat-mallorca-baleares">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Elche CF "B"</td>
+                  <td>CE Europa</td>
+                  <td>
+                    <select id="resultat-elche-europa">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>UD Alzira</td>
+                  <td>SCR Peña Deportiva</td>
+                  <td>
+                    <select id="resultat-alzira-peña">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>UE Olot</td>
+                  <td>Terrassa FC</td>
+                  <td>
+                    <select id="resultat-olot-terrassa">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CE Sabadell FC</td>
+                  <td>CF Badalona Futur</td>
+                  <td>
+                    <select id="resultat-sabadell-badalona">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>UE Cornellà</td>
+                  <td>Torrent CF</td>
+                  <td>
+                    <select id="resultat-cornella-torrent">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CD Ibiza Islas Pitiusas</td>
+                  <td>CE Andratx</td>
+                  <td>
+                    <select id="resultat-ibiza-andratx">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Club Lleida Esportiu</td>
+                  <td>RCD Espanyol "B"</td>
+                  <td>
+                    <select id="resultat-lleida-espanyol">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>UE Sant Andreu</td>
+                  <td>Valencia-Mestalla</td>
+                  <td>
+                    <select id="resultat-uesa-valencia">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="jornada" id="jornada-34" style="display: none">
+            <table>
+              <thead>
+                <tr>
+                  <th>Local</th>
+                  <th>Visitant</th>
+                  <th>Resultat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>CE Europa</td>
+                  <td>RCD Mallorca "B"  </td>
+                  <td>
+                    <select id="resultat-europa-mallorca">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Terrassa FC</td>
+                  <td>UD Alzira</td>
+                  <td>
+                    <select id="resultat-terrassa-alzira">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CF Badalona Futur</td>
+                  <td>UE Olot</td>
+                  <td>
+                    <select id="resultat-badalona-olot">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Valencia-Mestalla</td>
+                  <td>CE Sabadell FC</td>
+                  <td>
+                    <select id="resultat-valencia-sabadell">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>RCD Espanyol "B"</td>
+                  <td>UE Cornellà</td>
+                  <td>
+                    <select id="resultat-espanyol-cornella">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CE Andratx</td>
+                  <td>Club Lleida Esportiu</td>
+                  <td>
+                    <select id="resultat-andratx-lleida">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>CD Atlético Baleares</td>
+                  <td>CD Ibiza Islas Pitiusas</td>
+                  <td>
+                    <select id="resultat-baleares-ibiza">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>SCR Peña Deportiva</td>
+                  <td>Elche CF "B"</td>
+                  <td>
+                    <select id="resultat-peña-elche">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Torrent CF</td>
+                  <td>UE Sant Andreu</td>
+                  <td>
+                    <select id="resultat-torrent-uesa">
+                      <option value="">—</option>
+                      <option value="1">1</option>
+                      <option value="X">X</option>
+                      <option value="2">2</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+                          
+        <div style="text-align: center; margin-top: 20px">
+          <button id="boto-anterior">Anterior</button>
+          <button id="boto-seguent">Següent</button>
+          <button
+            id="boto-restablir"
+            style="background-color: #dc3545; color: white; margin-left: 10px"
+          >
+            Restablir resultats
+          </button>
+        </div>
       </div>
       <!-- Taula de classificació -->
       <div class="table-container classification">
@@ -445,50 +1644,118 @@
       </div>
     </div>
     <script>
+      const puntsInicials = {
+        europa: 41,
+        uesa: 40,
+        espanyol: 40,
+        terrassa: 38,
+        torrent: 37,
+        valencia: 36,
+        sabadell: 35,
+        elche: 35,
+        baleares: 34,
+        lleida: 34,
+        alzira: 29,
+        olot: 27,
+        ibiza: 27,
+        peña: 26,
+        cornella: 24,
+        andratx: 21,
+        badalona: 16,
+        mallorca: 11,
+      };
+
+      const equipToId = {
+        "CE Europa": "europa",
+        "UE Sant Andreu": "uesa",
+        'RCD Espanyol "B"': "espanyol",
+        "Terrassa FC": "terrassa",
+        "Torrent CF": "torrent",
+        "Valencia-Mestalla": "valencia",
+        "CE Sabadell FC": "sabadell",
+        'Elche CF "B"': "elche",
+        "CD Atlético Baleares": "baleares",
+        "Club Lleida Esportiu": "lleida",
+        "UD Alzira": "alzira",
+        "UE Olot": "olot",
+        "CD Ibiza Islas Pitiusas": "ibiza",
+        "SCR Peña Deportiva": "peña",
+        "UE Cornellà": "cornella",
+        "CE Andratx": "andratx",
+        "CF Badalona Futur": "badalona",
+        'RCD Mallorca "B"': "mallorca",
+      };
+
+      const totalJornades = 34; // Nombre total de jornades
+
+      function mostraJornada(jornada) {
+        document.querySelectorAll(".jornada").forEach((div) => {
+          div.style.display = "none"; // Amaguem totes les jornades
+        });
+
+        document.getElementById(`jornada-${jornada}`).style.display = "block"; // Mostrem la correcta
+        document.getElementById("num-jornada").textContent = jornada; // Actualitzem el número a la interfície
+
+        // Guardar la jornada actual en localStorage
+        localStorage.setItem("jornadaActual", jornada);
+
+        // Desactivar botons si estem al límit
+        document.getElementById("boto-anterior").disabled = jornada === 24;
+        document.getElementById("boto-seguent").disabled =
+          jornada === totalJornades;
+      }
       document.addEventListener("DOMContentLoaded", function () {
+        let jornadaActual = localStorage.getItem("jornadaActual")
+          ? parseInt(localStorage.getItem("jornadaActual"))
+          : 24; // Si hi ha una jornada desada, la carreguem; si no, comencem a la 24
+
+
+        // Event listeners per als botons
+        document
+          .getElementById("boto-anterior")
+          .addEventListener("click", function () {
+            if (jornadaActual > 24) {
+              jornadaActual--;
+              mostraJornada(jornadaActual);
+            }
+          });
+
+        document
+          .getElementById("boto-seguent")
+          .addEventListener("click", function () {
+            if (jornadaActual < totalJornades) {
+              jornadaActual++;
+              mostraJornada(jornadaActual);
+            }
+          });
+
+        // Mostrem la primera jornada en carregar la pàgina
+        mostraJornada(jornadaActual);
+
         const selects = document.querySelectorAll("select");
 
-        const puntsInicials = {
-          europa: 41,
-          uesa: 40,
-          espanyol: 40,
-          terrassa: 38,
-          torrent: 37,
-          valencia: 36,
-          sabadell: 35,
-          elche: 35,
-          baleares: 34,
-          lleida: 34,
-          alzira: 29,
-          olot: 27,
-          ibiza: 27,
-          peña: 26,
-          cornella: 24,
-          andratx: 21,
-          badalona: 16,
-          mallorca: 11,
-        };
+        // Funció per guardar resultats a localStorage
+        function guardaResultats() {
+          let resultats = {};
+          selects.forEach((select) => {
+            resultats[select.id] = select.value;
+          });
+          localStorage.setItem("resultats", JSON.stringify(resultats));
+        }
 
-        const equipToId = {
-          "CE Europa": "europa",
-          "UE Sant Andreu": "uesa",
-          'RCD Espanyol "B"': "espanyol",
-          "Terrassa FC": "terrassa",
-          "Torrent CF": "torrent",
-          "Valencia-Mestalla": "valencia",
-          "CE Sabadell FC": "sabadell",
-          'Elche CF "B"': "elche",
-          "CD Atlético Baleares": "baleares",
-          "Club Lleida Esportiu": "lleida",
-          "UD Alzira": "alzira",
-          "UE Olot": "olot",
-          "CD Ibiza Islas Pitiusas": "ibiza",
-          "SCR Peña Deportiva": "peña",
-          "UE Cornellà": "cornella",
-          "CE Andratx": "andratx",
-          "CF Badalona Futur": "badalona",
-          'RCD Mallorca "B"': "mallorca",
-        };
+        // Funció per carregar resultats de localStorage
+        function carregaResultats() {
+          const resultatsGuardats = JSON.parse(
+            localStorage.getItem("resultats")
+          );
+          if (resultatsGuardats) {
+            selects.forEach((select) => {
+              if (resultatsGuardats[select.id]) {
+                select.value = resultatsGuardats[select.id];
+              }
+            });
+          }
+        }
 
         function actualitzaClassificacio() {
           const punts = { ...puntsInicials };
@@ -501,8 +1768,8 @@
             const local = fila.children[0].textContent.trim();
             const visitant = fila.children[1].textContent.trim();
 
-            const idLocal = equipToId[local];
-            const idVisitant = equipToId[visitant];
+            const idLocal = equipToId[local] || null;
+            const idVisitant = equipToId[visitant] || null;
 
             if (idLocal && idVisitant) {
               if (resultat === "1") {
@@ -557,15 +1824,47 @@
 
             tbody.appendChild(fila);
           });
+
+          // Guarda els resultats després d'actualitzar la classificació
+          guardaResultats();
         }
 
         selects.forEach((select) => {
           select.addEventListener("change", actualitzaClassificacio);
         });
 
-        // Executa la funció quan es carrega la pàgina per aplicar els colors inicialment
+        // Carrega resultats de localStorage i després actualitza la classificació
+        carregaResultats();
         actualitzaClassificacio();
       });
+      document
+        .getElementById("boto-restablir")
+        .addEventListener("click", function () {
+          if (
+            confirm(
+              "Segur que vols restablir tots els resultats? Aquesta acció no es pot desfer."
+            )
+          ) {
+            // Esborrar els resultats de localStorage
+            localStorage.removeItem("resultats");
+
+            // Reiniciar totes les seleccions de resultats
+            document.querySelectorAll("select").forEach((select) => {
+              select.value = "";
+            });
+
+            // Reiniciar la classificació manualment amb les puntuacions inicials
+            Object.keys(puntsInicials).forEach((equip) => {
+              document.getElementById(`punts-${equip}`).textContent =
+                puntsInicials[equip];
+            });
+
+            // Opcional: Tornar a la jornada 24
+            jornadaActual = 24;
+            mostraJornada(jornadaActual);
+            localStorage.setItem("jornadaActual", jornadaActual);
+          }
+        });
     </script>
   </body>
 </html>
