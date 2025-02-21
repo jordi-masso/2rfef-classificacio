@@ -218,7 +218,7 @@
 
               <tr>
                 <td>UD Alzira</td>
-                <td>Club Lleida Esportiu</td>
+                <td>Lleida FC</td>
                 <td>
                   <select id="resultat-alzira-lleida">
                     <option value="">—</option>
@@ -346,7 +346,7 @@
               </tr>
 
               <tr>
-                <td>Club Lleida Esportiu</td>
+                <td>Lleida FC</td>
                 <td>Elche CF "B"</td>
                 <td>
                   <select id="resultat-lleida-elche">
@@ -423,7 +423,7 @@
 
               <tr>
                 <td>RCD Mallorca "B"</td>
-                <td>Club Lleida Esportiu</td>
+                <td>Lleida FC</td>
                 <td>
                   <select id="resultat-mallorca-lleida">
                     <option value="">—</option>
@@ -524,7 +524,7 @@
                 </td>
               </tr>
               <tr>
-                <td>Club Lleida Esportiu</td>
+                <td>Lleida FC</td>
                 <td>CE Europa</td>
                 <td>
                   <select id="resultat-lleida-europa">
@@ -718,7 +718,7 @@
 
               <tr>
                 <td>SCR Peña Deportiva</td>
-                <td>Club Lleida Esportiu</td>
+                <td>Lleida FC</td>
                 <td>
                   <select id="resultat-peña-lleida">
                     <option value="">—</option>
@@ -806,7 +806,7 @@
               </tr>
 
               <tr>
-                <td>Club Lleida Esportiu</td>
+                <td>Lleida FC</td>
                 <td>Terrassa FC</td>
                 <td>
                   <select id="resultat-baleares-sabadell">
@@ -922,7 +922,7 @@
 
               <tr>
                 <td>CF Badalona Futur</td>
-                <td>Club Lleida Esportiu</td>
+                <td>Lleida FC</td>
                 <td>
                   <select id="resultat-badalona-lleida">
                     <option value="">—</option>
@@ -1062,7 +1062,7 @@
               </tr>
 
               <tr>
-                <td>Club Lleida Esportiu</td>
+                <td>Lleida FC</td>
                 <td>Valencia-Mestalla</td>
                 <td>
                   <select id="resultat-lleida-valencia">
@@ -1243,7 +1243,7 @@
 
               <tr>
                 <td>Torrent CF</td>
-                <td>Club Lleida Esportiu</td>
+                <td>Lleida FC</td>
                 <td>
                   <select id="resultat-torrent-lleida">
                     <option value="">—</option>
@@ -1370,7 +1370,7 @@
               </tr>
 
               <tr>
-                <td>Club Lleida Esportiu</td>
+                <td>Lleida FC</td>
                 <td>RCD Espanyol "B"</td>
                 <td>
                   <select id="resultat-lleida-espanyol">
@@ -1473,7 +1473,7 @@
 
               <tr>
                 <td>CE Andratx</td>
-                <td>Club Lleida Esportiu</td>
+                <td>Lleida FC</td>
                 <td>
                   <select id="resultat-andratx-lleida">
                     <option value="">—</option>
@@ -1596,7 +1596,7 @@
             </tr>
             <tr>
               <td>10</td>
-              <td id="lleida">Club Lleida Esportiu</td>
+              <td id="lleida">Lleida FC</td>
               <td id="punts-lleida">34</td>
             </tr>
             <tr>
@@ -1675,7 +1675,7 @@
         "CE Sabadell FC": "sabadell",
         'Elche CF "B"': "elche",
         "CD Atlético Baleares": "baleares",
-        "Club Lleida Esportiu": "lleida",
+        "Lleida FC": "lleida",
         "UD Alzira": "alzira",
         "UE Olot": "olot",
         "CD Ibiza Islas Pitiusas": "ibiza",
@@ -1685,6 +1685,10 @@
         "CF Badalona Futur": "badalona",
         'RCD Mallorca "B"': "mallorca",
       };
+
+      let jornadaActual = localStorage.getItem("jornadaActual")
+        ? parseInt(localStorage.getItem("jornadaActual"))
+        : 24; // 🔹 Ara és global i no es reiniciarà incorrectament
 
       const totalJornades = 34; // Nombre total de jornades
 
@@ -1704,12 +1708,9 @@
         document.getElementById("boto-seguent").disabled =
           jornada === totalJornades;
       }
-      document.addEventListener("DOMContentLoaded", function () {
-        let jornadaActual = localStorage.getItem("jornadaActual")
-          ? parseInt(localStorage.getItem("jornadaActual"))
-          : 24; // Si hi ha una jornada desada, la carreguem; si no, comencem a la 24
 
-        // Event listeners per als botons
+      document.addEventListener("DOMContentLoaded", function () {
+        // Event listeners per als botons de canvi de jornada
         document
           .getElementById("boto-anterior")
           .addEventListener("click", function () {
@@ -1728,12 +1729,11 @@
             }
           });
 
-        // Mostrem la primera jornada en carregar la pàgina
+        // Mostrem la jornada guardada o la 24 per defecte
         mostraJornada(jornadaActual);
 
         const selects = document.querySelectorAll("select");
 
-        // Funció per guardar resultats a localStorage
         function guardaResultats() {
           let resultats = {};
           selects.forEach((select) => {
@@ -1742,7 +1742,6 @@
           localStorage.setItem("resultats", JSON.stringify(resultats));
         }
 
-        // Funció per carregar resultats de localStorage
         function carregaResultats() {
           const resultatsGuardats = JSON.parse(
             localStorage.getItem("resultats")
@@ -1832,10 +1831,11 @@
           select.addEventListener("change", actualitzaClassificacio);
         });
 
-        // Carrega resultats de localStorage i després actualitza la classificació
         carregaResultats();
         actualitzaClassificacio();
       });
+
+      // 🔹 El botó "Restablir resultats" ara porta a la jornada 25 correctament
       document
         .getElementById("boto-restablir")
         .addEventListener("click", function () {
@@ -1858,7 +1858,7 @@
                 puntsInicials[equip];
             });
 
-            // Opcional: Tornar a la jornada 24
+            // 🔹 Ara la jornada es posa correctament a 24
             jornadaActual = 24;
             mostraJornada(jornadaActual);
             localStorage.setItem("jornadaActual", jornadaActual);
