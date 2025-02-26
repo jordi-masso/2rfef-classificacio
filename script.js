@@ -182,11 +182,40 @@ document.addEventListener("DOMContentLoaded", function () {
     select.addEventListener("change", actualitzaClassificacio);
   });
 
+  let resultatsGuardats = JSON.parse(localStorage.getItem("resultats")) || {};
+
+  // 🔹 Objecte amb els resultats fixos per als partits de la jornada 24
+  const resultatsFixos = {
+    "resultat-mallorca-andratx": "2",
+    "resultat-elche-ibiza": "2",
+    "resultat-peña-torrent": "X",
+    "resultat-terrassa-valencia": "2",
+    "resultat-badalona-baleares": "2",
+    "resultat-europa-espanyol": "1",
+    "resultat-olot-cornella": "1",
+    "resultat-alzira-lleida": "2",
+    "resultat-sabadell-uesa": "2",
+  };
+
+  // 🔹 Apliquem els resultats fixos als selects de la jornada 24
+  document.querySelectorAll("#jornada-24 select").forEach((select) => {
+    if (resultatsFixos.hasOwnProperty(select.id)) {
+      select.value = resultatsFixos[select.id]; // 🔹 Assignem el valor fix
+      select.disabled = true; // 🔹 Bloquegem perquè l'usuari no pugui modificar-lo
+
+      // 🔹 Guardem aquest resultat a localStorage
+      resultatsGuardats[select.id] = resultatsFixos[select.id];
+    }
+  });
+
+  // 🔹 Guardem tots els canvis a localStorage
+  localStorage.setItem("resultats", JSON.stringify(resultatsGuardats));
+
   carregaResultats();
   actualitzaClassificacio();
 });
 
-// 🔹 El botó "Restablir resultats" ara porta a la jornada 24 correctament
+// 🔹 El botó "Restablir resultats" ara porta a la jornada 25 correctament
 document
   .getElementById("boto-restablir")
   .addEventListener("click", function () {
@@ -313,34 +342,3 @@ document
       console.log("Classificació actualitzada després de restablir.");
     }
   });
-
-document.addEventListener("DOMContentLoaded", function () {
-  let resultatsGuardats = JSON.parse(localStorage.getItem("resultats")) || {};
-
-  // 🔹 Objecte amb els resultats fixos per als partits de la jornada 24
-  const resultatsFixos = {
-    "resultat-mallorca-andratx": "2",
-    "resultat-elche-ibiza": "2",
-    "resultat-peña-torrent": "X",
-    "resultat-terrassa-valencia": "2",
-    "resultat-badalona-baleares": "2",
-    "resultat-europa-espanyol": "1",
-    "resultat-olot-cornella": "1",
-    "resultat-alzira-lleida": "2",
-    "resultat-sabadell-uesa": "2",
-  };
-
-  // 🔹 Apliquem els resultats fixos als selects de la jornada 24
-  document.querySelectorAll("#jornada-24 select").forEach((select) => {
-    if (resultatsFixos.hasOwnProperty(select.id)) {
-      select.value = resultatsFixos[select.id]; // 🔹 Assignem el valor fix
-      select.disabled = true; // 🔹 Bloquegem perquè l'usuari no pugui modificar-lo
-
-      // 🔹 Guardem aquest resultat a localStorage
-      resultatsGuardats[select.id] = resultatsFixos[select.id];
-    }
-  });
-
-  // 🔹 Guardem tots els canvis a localStorage
-  localStorage.setItem("resultats", JSON.stringify(resultatsGuardats));
-});
