@@ -164,6 +164,12 @@ const jornades = {
   ],
 };
 
+let jornadaActual = localStorage.getItem("jornadaActual")
+  ? parseInt(localStorage.getItem("jornadaActual"))
+  : 25; // Ara és global i no es reiniciarà incorrectament
+
+const totalJornades = 34; // Nombre total de jornades
+
 // Funció per generar la taula de partits dinàmicament
 function generaTaulaPartits(jornada) {
   const partitsContainer = document.getElementById("partits-container");
@@ -216,26 +222,25 @@ function generaTaulaPartits(jornada) {
   partitsContainer.appendChild(table);
 }
 
-let jornadaActual = localStorage.getItem("jornadaActual")
-  ? parseInt(localStorage.getItem("jornadaActual"))
-  : 25; // 🔹 Ara és global i no es reiniciarà incorrectament
-
-const totalJornades = 34; // Nombre total de jornades
-
+// Funció per mostrar la jornada actual
 function mostraJornada(jornada) {
-  document.querySelectorAll(".jornada").forEach((div) => {
-    div.style.display = "none"; // Amaguem totes les jornades
-  });
-
-  document.getElementById(`jornada-${jornada}`).style.display = "block"; // Mostrem la correcta
-  document.getElementById("num-jornada").textContent = jornada; // Actualitzem el número a la interfície
-
-  // Guardar la jornada actual en localStorage
+  document.getElementById("num-jornada").textContent = jornada;
   localStorage.setItem("jornadaActual", jornada);
-
-  // Desactivar botons si estem al límit
+  generaTaulaPartits(jornada);
   document.getElementById("boto-anterior").disabled = jornada === 24;
   document.getElementById("boto-seguent").disabled = jornada === totalJornades;
+}
+
+// Funció per guardar resultats al localStorage
+function guardaResultats() {
+  let resultats = JSON.parse(localStorage.getItem("resultats")) || {};
+  console.log(resultats);
+  console.log(localStorage.getItem("resultats"));
+  document.querySelectorAll("#partits-container select").forEach((select) => {
+    resultats[select.id] = select.value;
+  });
+  localStorage.setItem("resultats", JSON.stringify(resultats));
+  console.log(localStorage.getItem("resultats"));
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -262,25 +267,6 @@ document.addEventListener("DOMContentLoaded", function () {
   mostraJornada(jornadaActual);
 
   const selects = document.querySelectorAll("select");
-
-  function guardaResultats() {
-    let resultats = {};
-    selects.forEach((select) => {
-      resultats[select.id] = select.value;
-    });
-    localStorage.setItem("resultats", JSON.stringify(resultats));
-  }
-
-  function carregaResultats() {
-    const resultatsGuardats = JSON.parse(localStorage.getItem("resultats"));
-    if (resultatsGuardats) {
-      selects.forEach((select) => {
-        if (resultatsGuardats[select.id]) {
-          select.value = resultatsGuardats[select.id];
-        }
-      });
-    }
-  }
 
   function actualitzaClassificacio() {
     const punts = { ...puntsInicials };
