@@ -164,6 +164,58 @@ const jornades = {
   ],
 };
 
+// Funció per generar la taula de partits dinàmicament
+function generaTaulaPartits(jornada) {
+  const partitsContainer = document.getElementById("partits-container");
+  partitsContainer.innerHTML = ""; // 🔹 Esborrem contingut previ
+
+  if (!jornades[jornada]) return;
+
+  const resultatsGuardats = JSON.parse(localStorage.getItem("resultats")) || {};
+
+  const table = document.createElement("table");
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>Local</th>
+        <th>Visitant</th>
+        <th>Resultat</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${jornades[jornada]
+        .map(([local, visitant]) => {
+          const selectId = `resultat-${local
+            .replace(/\s/g, "-")
+            .toLowerCase()}-${visitant.replace(/\s/g, "-").toLowerCase()}`;
+          const valorGuardat = resultatsGuardats[selectId] || "";
+          return `
+            <tr>
+              <td>${local}</td>
+              <td>${visitant}</td>
+              <td>
+                <select id="${selectId}">
+                  <option value="">—</option>
+                  <option value="1" ${
+                    valorGuardat === "1" ? "selected" : ""
+                  }>1</option>
+                  <option value="X" ${
+                    valorGuardat === "X" ? "selected" : ""
+                  }>X</option>
+                  <option value="2" ${
+                    valorGuardat === "2" ? "selected" : ""
+                  }>2</option>
+                </select>
+              </td>
+            </tr>
+          `;
+        })
+        .join("")}
+    </tbody>
+  `;
+  partitsContainer.appendChild(table);
+}
+
 let jornadaActual = localStorage.getItem("jornadaActual")
   ? parseInt(localStorage.getItem("jornadaActual"))
   : 25; // 🔹 Ara és global i no es reiniciarà incorrectament
