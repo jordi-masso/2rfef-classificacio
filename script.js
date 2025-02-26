@@ -243,6 +243,47 @@ function guardaResultats() {
   console.log(localStorage.getItem("resultats"));
 }
 
+// Funció per generar la classificació
+function generaClassificacio() {
+  const punts = { ...puntsInicials };
+
+  // Ordenem la classificació per punts
+  let classificacio = Object.keys(punts)
+    .map((id) => ({
+      id,
+      nom: Object.keys(equipToId).find((key) => equipToId[key] === id),
+      punts: punts[id],
+    }))
+    .sort((a, b) => b.punts - a.punts);
+
+  // 🔹 Generem la taula de classificació
+  const tbody = document.querySelector(".classification tbody");
+  tbody.innerHTML = "";
+
+  classificacio.forEach((equip, index) => {
+    let fila = document.createElement("tr");
+    fila.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${equip.nom}</td>
+      <td id="punts-${equip.id}">${equip.punts}</td>
+    `;
+    tbody.appendChild(fila);
+
+    // Assignació de colors segons la posició
+    if (index === 0) {
+      fila.style.backgroundColor = "#28a745"; // Verd fort per al 1r lloc
+      fila.style.color = "#fff";
+    } else if (index >= 1 && index <= 4) {
+      fila.style.backgroundColor = "#90ee90"; // Verd clar per al 2n-5è lloc
+    } else if (index === 12) {
+      fila.style.backgroundColor = "#ff9999"; // Vermell suau per al 13è lloc
+    } else if (index >= 13 && index <= 17) {
+      fila.style.backgroundColor = "#dc3545"; // Vermell fort per al 14è-18è lloc
+      fila.style.color = "#fff";
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   // Event listeners per als botons de canvi de jornada
   document
