@@ -178,7 +178,7 @@ const resultatsFixos = {
 
 let jornadaActual = localStorage.getItem("jornadaActual")
   ? parseInt(localStorage.getItem("jornadaActual"))
-  : 24; // Ara és global i no es reiniciarà incorrectament
+  : 25; // Ara és global i no es reiniciarà incorrectament
 
 const totalJornades = 34; // Nombre total de jornades
 
@@ -207,10 +207,7 @@ function generaTaulaPartits() {
     <tbody>
       ${jornades[jornada]
         .map(([local, visitant]) => {
-          const selectId = `resultat-${local
-            .replace(/\s/g, "-")
-            .toLowerCase()}-${visitant.replace(/\s/g, "-").toLowerCase()}`;
-
+          const selectId = `resultat-${equipToId[local]}-${equipToId[visitant]}`;
           // Comprovar si el resultat està als fixos
           const resultatFix = resultatsFixos[selectId] || null;
 
@@ -451,11 +448,11 @@ document
       localStorage.setItem("resultats", JSON.stringify(resultatsGuardats));
 
       // Tornem a la jornada 24 i ho guardem
-      jornadaActual = 24;
+      jornadaActual = 25;
       mostraJornada(jornadaActual);
       localStorage.setItem("jornadaActual", jornadaActual);
 
-      generaClassificacio();
+      actualitzaClassificacio();
       console.log("Classificació actualitzada després de restablir.");
     }
   });
