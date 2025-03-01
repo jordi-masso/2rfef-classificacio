@@ -19,6 +19,12 @@ const puntsInicials = {
   mallorca: 11,
 };
 
+const partitsInicials = Object.fromEntries(
+  Object.keys(puntsInicials).map((equip) => [equip, 23])
+);
+
+console.log(partitsInicials);
+
 const equipToId = {
   "CE Europa": "europa",
   "UE Sant Andreu": "uesa",
@@ -281,6 +287,7 @@ function guardaResultats() {
 // Funció per generar la classificació
 function generaClassificacio() {
   const punts = { ...puntsInicials };
+  const partits = { ...partitsInicials };
 
   // Ordenem la classificació per punts
   let classificacio = Object.keys(punts)
@@ -288,6 +295,7 @@ function generaClassificacio() {
       id,
       nom: Object.keys(equipToId).find((key) => equipToId[key] === id),
       punts: punts[id],
+      partits: partits[id],
     }))
     .sort((a, b) => b.punts - a.punts);
 
@@ -301,6 +309,7 @@ function generaClassificacio() {
       <td>${index + 1}</td>
       <td>${equip.nom}</td>
       <td id="punts-${equip.id}">${equip.punts}</td>
+      <td id="partits-${equip.id}">${equip.partits}</td>
     `;
     tbody.appendChild(fila);
 
@@ -321,6 +330,7 @@ function generaClassificacio() {
 
 function actualitzaClassificacio() {
   const punts = { ...puntsInicials };
+  const partits = { ...partitsInicials };
   const selects = document.querySelectorAll("select");
 
   selects.forEach((select) => {
@@ -335,6 +345,8 @@ function actualitzaClassificacio() {
     const idVisitant = equipToId[visitant] || null;
 
     if (idLocal && idVisitant) {
+      partits[idLocal] += 1;
+      partits[idVisitant] += 1;
       if (resultat === "1") {
         punts[idLocal] += 3;
       } else if (resultat === "2") {
@@ -351,6 +363,7 @@ function actualitzaClassificacio() {
       id,
       nom: Object.keys(equipToId).find((key) => equipToId[key] === id),
       punts: punts[id],
+      partits: partits[id],
     }))
     .sort((a, b) => b.punts - a.punts);
 
@@ -362,15 +375,19 @@ function actualitzaClassificacio() {
     let posicio = document.createElement("td");
     let nomEquip = document.createElement("td");
     let puntsEquip = document.createElement("td");
+    let partitsEquip = document.createElement("td");
 
     posicio.textContent = index + 1;
     nomEquip.textContent = equip.nom;
     puntsEquip.textContent = equip.punts;
     puntsEquip.id = `punts-${equip.id}`;
+    partitsEquip.textContent = equip.partits;
+    partitsEquip.id = `partits-${equip.id}`;
 
     fila.appendChild(posicio);
     fila.appendChild(nomEquip);
     fila.appendChild(puntsEquip);
+    fila.appendChild(partitsEquip);
 
     // Assignació de colors segons la posició
     if (index === 0) {
