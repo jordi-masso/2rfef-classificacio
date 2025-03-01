@@ -372,22 +372,13 @@ function actualitzaClassificacio() {
 
   classificacio.forEach((equip, index) => {
     let fila = document.createElement("tr");
-    let posicio = document.createElement("td");
-    let nomEquip = document.createElement("td");
-    let puntsEquip = document.createElement("td");
-    let partitsEquip = document.createElement("td");
-
-    posicio.textContent = index + 1;
-    nomEquip.textContent = equip.nom;
-    puntsEquip.textContent = equip.punts;
-    puntsEquip.id = `punts-${equip.id}`;
-    partitsEquip.textContent = equip.partits;
-    partitsEquip.id = `partits-${equip.id}`;
-
-    fila.appendChild(posicio);
-    fila.appendChild(nomEquip);
-    fila.appendChild(puntsEquip);
-    fila.appendChild(partitsEquip);
+    fila.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${equip.nom}</td>
+      <td id="punts-${equip.id}">${equip.punts}</td>
+      <td id="partits-${equip.id}">${equip.partits}</td>
+    `;
+    tbody.appendChild(fila);
 
     // Assignació de colors segons la posició
     if (index === 0) {
