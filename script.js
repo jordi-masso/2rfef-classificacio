@@ -71,12 +71,12 @@ const jornades = {
   ],
   26: [
     ["Valencia-Mestalla", "CD Atlético Baleares"],
-    ["UD Alzira", "UE Sant Andreu"],
     ["Elche CF B", "UE Cornellà"],
     ["RCD Mallorca B", "Lleida FC"],
     ["CE Europa", "CD Ibiza Islas Pitiusas"],
     ["SCR Peña Deportiva", "CE Andratx"],
     ["Terrassa FC", "RCD Espanyol B"],
+    ["UD Alzira", "UE Sant Andreu"],
     ["CF Badalona Futur", "Torrent CF"],
     ["UE Olot", "CE Sabadell FC"],
   ],
@@ -180,11 +180,20 @@ const resultatsFixos = {
   "resultat-olot-cornella": "1",
   "resultat-alzira-lleida": "2",
   "resultat-sabadell-uesa": "2",
+  "resultat-andratx-europa": "1",
+  "resultat-valencia-badalona": "1",
+  "resultat-espanyol-peña": "X",
+  "resultat-baleares-sabadell": "1",
+  "resultat-ibiza-mallorca": "1",
+  "resultat-torrent-terrassa": "1",
+  "resultat-cornella-alzira": "X",
+  "resultat-lleida-elche": "X",
+  "resultat-uesa-olot": "1",
 };
 
 let jornadaActual = localStorage.getItem("jornadaActual")
   ? parseInt(localStorage.getItem("jornadaActual"))
-  : 25; // Ara és global i no es reiniciarà incorrectament
+  : 26; // Ara és global i no es reiniciarà incorrectament
 
 const totalJornades = 34; // Nombre total de jornades
 
@@ -455,8 +464,8 @@ document
 
       localStorage.setItem("resultats", JSON.stringify(resultatsGuardats));
 
-      // Tornem a la jornada 24 i ho guardem
-      jornadaActual = 25;
+      // Tornem a la jornada 26 i ho guardem
+      jornadaActual = 26;
       mostraJornada(jornadaActual);
       localStorage.setItem("jornadaActual", jornadaActual);
 
