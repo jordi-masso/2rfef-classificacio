@@ -189,11 +189,38 @@ const resultatsFixos = {
   "resultat-cornella-alzira": "X",
   "resultat-lleida-elche": "X",
   "resultat-uesa-olot": "1",
+  "resultat-valencia-baleares": "2",
+  "resultat-elche-cornella": "1",
+  "resultat-mallorca-lleida": "X",
+  "resultat-europa-ibiza": "1",
+  "resultat-peña-andratx": "2",
+  "resultat-terrassa-espanyol": "X",
+  "resultat-alzira-uesa": "2",
+  "resultat-badalona-torrent": "X",
+  "resultat-olot-sabadell": "2",
+  "resultat-torrent-valencia": "X",
+  "resultat-espanyol-badalona": "1",
+  "resultat-cornella-mallorca": "1",
+  "resultat-baleares-olot": "X",
+  "resultat-ibiza-peña": "1",
+  "resultat-andratx-terrassa": "1",
+  "resultat-sabadell-alzira": "1",
+  "resultat-lleida-europa": "2",
+  "resultat-uesa-elche": "2",
+  "resultat-elche-sabadell": "2",
+  "resultat-valencia-espanyol": "1",
+  "resultat-mallorca-uesa": "2",
+  "resultat-europa-cornella": "1",
+  "resultat-peña-lleida": "X",
+  "resultat-terrassa-ibiza": "2",
+  "resultat-badalona-andratx": "2",
+  "resultat-torrent-baleares": "2",
+  "resultat-alzira-olot": "2",
 };
 
 let jornadaActual = localStorage.getItem("jornadaActual")
   ? parseInt(localStorage.getItem("jornadaActual"))
-  : 26; // Ara és global i no es reiniciarà incorrectament
+  : 29; // Ara és global i no es reiniciarà incorrectament
 
 const totalJornades = 34; // Nombre total de jornades
 
@@ -464,8 +491,8 @@ document
 
       localStorage.setItem("resultats", JSON.stringify(resultatsGuardats));
 
-      // Tornem a la jornada 26 i ho guardem
-      jornadaActual = 26;
+      // Tornem a la jornada 29 i ho guardem
+      jornadaActual = 29;
       mostraJornada(jornadaActual);
       localStorage.setItem("jornadaActual", jornadaActual);
 
